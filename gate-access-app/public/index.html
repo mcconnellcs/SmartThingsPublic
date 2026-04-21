@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gate Access Manager</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">Gate Access</div>
+      <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+      <button class="nav-btn" data-view="pins">PINs</button>
+      <button class="nav-btn" data-view="residents">Residents</button>
+      <button class="nav-btn" data-view="logs">Access Log</button>
+      <div class="sidebar-footer">
+        <span id="current-user">…</span>
+        <button class="btn small secondary" id="logout-btn">Log out</button>
+      </div>
+    </aside>
+    <main class="main">
+      <section id="view-dashboard" class="view">
+        <div class="page-header"><h1>Dashboard</h1></div>
+        <div class="stats-grid" id="stats"></div>
+        <h2 style="font-size:16px;margin:24px 0 8px;">Recent activity</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>When</th>
+              <th>Code</th>
+              <th>Result</th>
+              <th>Resident / Unit</th>
+              <th>Gate</th>
+            </tr>
+          </thead>
+          <tbody id="recent-activity"></tbody>
+        </table>
+      </section>
+
+      <section id="view-pins" class="view hidden">
+        <div class="page-header">
+          <h1>PIN Codes</h1>
+          <button class="btn" id="new-pin-btn">+ New PIN</button>
+        </div>
+        <div class="toolbar">
+          <input type="text" id="pin-search" placeholder="Search by code, label, resident…" />
+          <select id="pin-filter-kind">
+            <option value="">All kinds</option>
+            <option value="resident">Resident</option>
+            <option value="guest">Guest</option>
+            <option value="vendor">Vendor</option>
+            <option value="staff">Staff</option>
+          </select>
+          <select id="pin-filter-status">
+            <option value="">All statuses</option>
+            <option value="active">Active</option>
+            <option value="disabled">Disabled</option>
+            <option value="scheduled">Scheduled</option>
+            <option value="expired">Expired</option>
+            <option value="used_up">Used up</option>
+          </select>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Label</th>
+              <th>Kind</th>
+              <th>Resident</th>
+              <th>Status</th>
+              <th>Valid</th>
+              <th>Uses</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="pins-body"></tbody>
+        </table>
+      </section>
+
+      <section id="view-residents" class="view hidden">
+        <div class="page-header">
+          <h1>Residents</h1>
+          <button class="btn" id="new-resident-btn">+ New Resident</button>
+        </div>
+        <div class="toolbar">
+          <input type="text" id="resident-search" placeholder="Search by name, unit, email…" />
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="residents-body"></tbody>
+        </table>
+      </section>
+
+      <section id="view-logs" class="view hidden">
+        <div class="page-header"><h1>Access Log</h1></div>
+        <div class="toolbar">
+          <select id="log-filter-result">
+            <option value="">All results</option>
+            <option value="granted">Granted</option>
+            <option value="denied">Denied</option>
+          </select>
+          <button class="btn secondary" id="log-refresh">Refresh</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>When</th>
+              <th>Code</th>
+              <th>Result</th>
+              <th>Reason</th>
+              <th>Resident / Unit</th>
+              <th>Gate</th>
+            </tr>
+          </thead>
+          <tbody id="logs-body"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+  <div id="modal-root"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
